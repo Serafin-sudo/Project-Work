@@ -14,10 +14,6 @@ function BooksGrid() {
             try
             {
                 const response = await axios.get("http://localhost:3001/Library");
-                console.log("------")
-                console.log("response.data:", response.data);
-                console.log("tipo:", typeof response.data);
-                console.log("------")
 
                 setBooks(response.data);
             }
@@ -28,9 +24,6 @@ function BooksGrid() {
         }
         fetchBooks();
     }, [])
-        
-    
-    
 
     return (
         <div className="booksGrid">

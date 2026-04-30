@@ -1,14 +1,14 @@
 import "./Book.css"
+import bookCoverEmpty from "../src/assets/imgs/bookCoverEmpty.png";
 
-function Book ({ book_data })
-{
+function Book ({ book_data }) {
 
     console.log("Book() ")
-    console.log(book_data)
 
     return (
         <div className="bookCard">
-            <h1>{book_data.title}</h1>
+            <img className="bookCoverEmpty" src={bookCoverEmpty} alt="ERRORE!"  />
+            <p className="bookTitle">{book_data.title}</p>
         </div>
     )
 }

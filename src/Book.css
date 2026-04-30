@@ -1,3 +1,40 @@
 .bookCard {
-    background-color: rgb(48, 158, 46);
+    width: 100%;
+    max-width: 400px;
+    height: 220px;
+
+    position: relative;
+}
+
+.bookCard:hover {
+    transform: scale(1.05);
+}
+
+.bookCoverEmpty {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    /* Modificare i gradi modifica il colore */
+    filter: sepia(5) saturate(5) hue-rotate(320deg)
+}
+
+@font-face {
+    font-family: 'OldLondon'; 
+    src: url('../src/assets/fonts/OldLondon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.bookTitle {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    user-select: none;
+
+    font-family: 'OldLondon', serif;
+    font-size: 2rem;
+    color: gold;
+    text-shadow: 2px 2px 4px black;
 }
