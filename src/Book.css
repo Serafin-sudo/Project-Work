@@ -1,40 +1,56 @@
-.bookCard {
-    width: 100%;
-    max-width: 400px;
-    height: 220px;
-
-    position: relative;
+.card {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
 }
 
-.bookCard:hover {
-    transform: scale(1.05);
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-.bookCoverEmpty {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    
-    /* Modificare i gradi modifica il colore */
-    filter: sepia(5) saturate(5) hue-rotate(320deg)
+.card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
-@font-face {
-    font-family: 'OldLondon'; 
-    src: url('../src/assets/fonts/OldLondon.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+.card-body {
+  padding: 1.2rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-.bookTitle {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 
-    user-select: none;
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0;
+}
 
-    font-family: 'OldLondon', serif;
-    font-size: 2rem;
-    color: gold;
-    text-shadow: 2px 2px 4px black;
+.card-text {
+  font-size: 0.875rem;
+  color: #555;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.btn-primary {
+  background-color: #4f46e5;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  align-self: flex-start;
+}
+
+.btn-primary:hover {
+  background-color: #3730a3;
 }

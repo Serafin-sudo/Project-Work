@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import './Filtri.css'
-import BooksGrid from './booksGrid'
+import BooksGrid from '../src/booksGrid'
 
 function App() {
 

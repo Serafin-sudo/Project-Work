@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Book from './book'
-import "./BooksGrid.css"
+import Book from './book.jsx'
+import "../src/booksGrid.css"
 
 function BooksGrid() {
 
