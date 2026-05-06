@@ -36,4 +36,4 @@ function BooksGrid() {
     )
 }
 
-export default BooksGrid
+export default BooksGrid;

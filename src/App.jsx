@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import './Filtri.css'
 import BooksGrid from './booksGrid'
@@ -35,4 +34,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
