@@ -1,3 +1,0 @@
-{"_id":{"$oid":"69ed3c7e86324c45a63682d1"},"code":1,"title":"Il Nome della Rosa","author":"Umberto Eco","year":1980,"genre":"Storico","availableCopies":3,"totalCopies":5,"isbn":"9788804668236"}
-{"_id":{"$oid":"69ed3c7e86324c45a63682d2"},"code":2,"title":"1984","author":"George Orwell","year":1949,"genre":"Distopico","availableCopies":2,"totalCopies":4,"isbn":"9780451524935"}
-{"_id":{"$oid":"69ed3c7e86324c45a63682d3"},"code":3,"title":"Il Signore degli Anelli","author":"J.R.R. Tolkien","year":1954,"genre":"Fantasy","availableCopies":1,"totalCopies":3,"isbn":"9780261102385"}
