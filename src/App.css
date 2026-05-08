@@ -1,3 +1,12 @@
+/*
+Colors:
+#eef4ed mint cream
+#8da9c4 powder blue
+#134074 yale blue
+#13315c oxford navy
+#0b2545 prussian blue
+*/
+
 .pagina {
   display: flex;
     flex-direction: column;
@@ -6,20 +15,47 @@
 
     align-items: center;
 }
+/*HEADER*/
 .header {
   width: 100%;
-  padding: 1rem 2rem;
 
-  background: #274c77;
-  color: #e7ecef;
+  background-color: #134074;
+  color: #8da9c4;
+
+  text-align: center;
+  position: relative;
 }
+.account-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  padding: 0.6rem 1.4rem;
+
+  font-size: 1rem;
+
+  background-color: #13315c;
+  color: #eef4ed;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+.account-btn:hover {
+  background-color: #8da9c4;
+  color: #13315c;
+}
+/*MAIN*/
 .main {
   width: 100%;
-  background: #414b51;
+
+  background-color: #8da9c4;
 }
+/*FOOTER*/
 .footer {
   width: 100%;
-  background: rgb(33, 30, 62);
-  color: #e7ecef;
+  background-color: #13315c;
+  color: #eef4ed;
   text-align: center;
 }

@@ -10,7 +10,8 @@ function App() {
   return (
     <div className='pagina'>
       <header className='header'>
-        <h1>Libreria:</h1>
+        <h1>Libreria Moby Dick</h1>
+        <button className='account-btn'>Account</button>
         <h2>FILTRI</h2>
         <div className='filtri'>
           <p>titolo</p>
