@@ -1,17 +1,21 @@
 import './App.css'
 import './Filtri.css'
 import BooksGrid from './booksGrid'
-import AddBook from './addBook';
+import AddBook from './addBook'
+import Login from "./login"
+import { useState } from 'react'
 
 function App() {
 
   console.log("APP()");
 
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div className='pagina'>
       <header className='header'>
         <h1>Libreria Moby Dick</h1>
-        <button className='account-btn'>Account</button>
+        <button className='account-btn' onClick={() => setShowLogin(true)}>Accedi</button>
         <h2>FILTRI</h2>
         <div className='filtri'>
           <p>titolo</p>
@@ -31,6 +35,7 @@ function App() {
       <footer className='footer'>
         <h3>Serafini & Minta</h3>
       </footer>
+      {showLogin && <Login onClose={() => setShowLogin(false)} />}
     </div>
   )
 }
