@@ -1,7 +1,7 @@
 import './Login.css'
 import { useState } from 'react';
 
-function Login({ onClose }) {
+function Login({ onClose, onLogin }) {
 
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
@@ -32,10 +32,11 @@ function Login({ onClose }) {
             }
         
             localStorage.setItem('token', data.token);
+            onLogin();
             onClose();
     
         } catch (err) {
-            setError(err);
+            setError("errore di connessiona al server");
         } finally {
             setLoading(false);
         }
