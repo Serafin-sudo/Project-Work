@@ -3,12 +3,16 @@ import { useState } from 'react';
 
 function Login({ onClose, onLogin }) {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
     const [error, setError] = useState('');
+    //Se sta caricando qualcosa
     const [loading, setLoading] = useState(false);
+    //Se ci si sta registrando invece che accedendo
+    const [registering, setregistering] = useState(false);
 
-    //Funzione 
+    //Funzione accesso
     const accedi = async () => {
 
         console.log("ACCEDI()")
@@ -41,16 +45,52 @@ function Login({ onClose, onLogin }) {
             setLoading(false);
         }
     };
+    //Funzioneregistrazione
+    const registrati = async () => {
+
+        console.log("REGISTRATI()")
+
+        setError('');
+        setLoading(true);
     
+        try {
+
+            const response = await fetch('/Users/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, passwd, admin: 0 }),
+            });
+ 
+            const data = await response.json();
+ 
+            if (!response.ok) {
+                setError(data.error);
+                return;
+            }
+
+            setregistering(false);
+            alert('Registrazione completata! Ora puoi accedere con le credenziali registrate.');
+    
+        } catch (err) {
+            setError("errore di connessiona al server");
+        } finally {
+            setLoading(false);
+        }
+    };
 
 
     return (
     <div className='login_overlay' onClick={onClose}>
         <div className='login_box' onClick={e => e.stopPropagation()}>
             <button className='login_x' onClick={onClose}>✕</button>
-            <h2>Accedi</h2>
+            <h2>{registering ? 'Registrati' : 'Accedi'}</h2>
 
-            <form onSubmit={e => e.preventDefault()}>
+            {registering && (
+            <>
+                <label>Nome</label>
+                <input type="text" placeholder="Mario Super" value={name} onChange={e => setName(e.target.value)}/>
+            </>
+            )}
 
             <label>Email</label>
             <input type="email" placeholder="esempio@email.com" value={email} onChange={e => setEmail(e.target.value)}/>
@@ -60,9 +100,14 @@ function Login({ onClose, onLogin }) {
 
             {error && <p className='login_error'>{error}</p>}
             <div className='bottoniAccediRegistrati'>
-                <button type="submit" onClick={accedi} disabled={loading}>{loading ? 'Caricamento...' : 'Accedi'}</button>
+                {!registering
+                    ? <button onClick={accedi} disabled={loading}>Conferma</button>
+                    : <button onClick={registrati} disabled={loading}>Conferma</button>
+                }
+                <button onClick={() => setregistering(!registering)}>
+                    {registering ? 'Accedi invece' : 'Registrati invece'}
+                </button>
             </div>
-            </form>
         </div>
     </div>
     )
