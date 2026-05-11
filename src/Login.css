@@ -23,6 +23,10 @@
 
     position: relative;
 }
+.bottoniAccediRegistrati{
+    display: flex;
+    flex-direction: row;
+}
 .login_box form {
     display: flex;
     flex-direction: column;

@@ -15,13 +15,12 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // Decodifica il token per leggere email e userId
-      // Il token JWT è: header.payload.signature
-      // Il payload è la parte centrale, codificata in base64
       const payload = JSON.parse(atob(token.split('.')[1]));
-      setUtente(payload); // { userId, email, exp... }
+      console.log(payload);
+      setUtente(payload);
     }
   }, []);
+
   const handleLogin = () => {
     const token = localStorage.getItem('token');
     const payload = JSON.parse(atob(token.split('.')[1]));
@@ -30,31 +29,24 @@ function App() {
 
   return (
     <div className='pagina'>
-      <div>
-      {utente ? (
-        <p>Benvenuto, {utente.email}!</p>
-      ) : (
-        <p>Non sei loggato</p>
-      )}
-      </div>
       <header className='header'>
         <h1>Libreria Moby Dick</h1>
-        <button className='account-btn' onClick={() => setShowLogin(true)}>Accedi</button>
-        <h2>FILTRI</h2>
-        <div className='filtri'>
-          <p>titolo</p>
-          <p>autore</p>
-          <p>genere</p>
-          <p>anno</p>
-          <input type="text" placeholder="Death in the clouds.."></input>
-          <input type="text" placeholder="Agatha Christie.."></input>
-          <input type="text" placeholder="Giallo.."></input>
-          <input type="text" placeholder="1935.."></input>
-        </div>
+        <button className='account-btn' onClick={() => setShowLogin(true)}>{utente ? utente.name : "Accedi"}</button>
       </header>
       <main className='main'>
-        <AddBook />
-        <BooksGrid />
+        <div className='menuLaterale'>
+          <h2>FILTRI</h2>
+          <div className='filtri'>
+            <input type="text" placeholder="Titolo.."></input>
+            <input type="text" placeholder="Autore.."></input>
+          </div>
+          <AddBook />
+        </div>
+        <div className='booksGridMain'>
+          <BooksGrid />
+        </div>
+        
+        
       </main>
       <footer className='footer'>
         <h3>Serafini & Minta</h3>

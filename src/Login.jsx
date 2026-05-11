@@ -41,6 +41,7 @@ function Login({ onClose, onLogin }) {
             setLoading(false);
         }
     };
+    
 
 
     return (
@@ -58,8 +59,9 @@ function Login({ onClose, onLogin }) {
             <input type="password" placeholder="••••••••" value={passwd} onChange={e => setPasswd(e.target.value)}/>
 
             {error && <p className='login_error'>{error}</p>}
-
-            <button type="submit" onClick={accedi} disabled={loading}>{loading ? 'Caricamento...' : 'Accedi'}</button>
+            <div className='bottoniAccediRegistrati'>
+                <button type="submit" onClick={accedi} disabled={loading}>{loading ? 'Caricamento...' : 'Accedi'}</button>
+            </div>
             </form>
         </div>
     </div>
