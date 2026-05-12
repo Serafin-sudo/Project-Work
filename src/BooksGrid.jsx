@@ -3,27 +3,27 @@ import axios from 'axios'
 import Book from './book.jsx'
 import "../src/booksGrid.css"
 
-function BooksGrid() {
+function BooksGrid({ books }) {
 
     console.log("BooksGrid()");
 
-    const [books, setBooks] = useState([]);
+    // const [books, setBooks] = useState([]);
 
-    useEffect(() => {
-        async function fetchBooks() {
-            try
-            {
-                const response = await axios.get("http://localhost:3001/Library");
+    // useEffect(() => {
+    //     async function fetchBooks() {
+    //         try
+    //         {
+    //             const response = await axios.get("http://localhost:3001/Library");
 
-                setBooks(response.data);
-            }
-            catch(error)
-            {
-                console.log(error);
-            }
-        }
-        fetchBooks();
-    }, [])
+    //             setBooks(response.data);
+    //         }
+    //         catch(error)
+    //         {
+    //             console.log(error);
+    //         }
+    //     }
+    //     fetchBooks();
+    // }, [])
 
     return (
         <div className="booksGrid">

@@ -11,9 +11,10 @@ Colors:
   display: flex;
     flex-direction: column;
 
-    flex: 1;
-
     align-items: center;
+
+    flex: 1;
+    min-height: 100vh;
 }
 /*HEADER*/
 .header {
@@ -49,6 +50,7 @@ Colors:
 /*MAIN*/
 .main {
   width: 100%;
+  flex: 1;
   
   display: flex;
   flex-direction: row;

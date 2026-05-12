@@ -81,8 +81,11 @@ function Login({ onClose, onLogin }) {
 
     return (
     <div className='login_overlay' onClick={onClose}>
+        
         <div className='login_box' onClick={e => e.stopPropagation()}>
+            
             <button className='login_x' onClick={onClose}>✕</button>
+
             <h2>{registering ? 'Registrati' : 'Accedi'}</h2>
 
             {registering && (
