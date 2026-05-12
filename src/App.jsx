@@ -5,6 +5,7 @@ import BooksGrid from './booksGrid'
 import AddBook from './addBook'
 import Login from "./login"
 import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 function App() {
 
@@ -17,18 +18,37 @@ function App() {
   
 	useEffect(() => {
 		const token = localStorage.getItem('token');
+
 		if (token) {
-		const payload = JSON.parse(atob(token.split('.')[1]));
-		setUtente(payload);
+			const payload = JSON.parse(atob(token.split('.')[1]));
+			setUtente(payload);
 		}
 
-		fetch('http://localhost:3001/Library')
-			.then(res => res.json())
-			.then(data => {
-				console.log("Libri ricevuti:", data);
-				setBooks(Array.isArray(data) ? data : []);
-			})
-			.catch(err => console.log("Errore fetch:", err));
+		async function fetchLibrary()
+		{
+			try{
+				const res = await axios.get('http://localhost:3001/Library')
+				console.log(res.data);
+
+				setBooks(res.data);
+
+			}catch(err){
+				console.log("Errore:", err.response?.data || err.message);
+		
+			}
+			
+		}
+
+		fetchLibrary();
+
+		// fetch('http://localhost:3001/Library')
+		// 	.then(res => res.json())
+		// 	.then(data => {
+		// 		console.log("Libri ricevuti:", data);
+		// 		setBooks(Array.isArray(data) ? data : []);
+		// 	})
+		// 	.catch(err => console.log("Errore fetch:", err));
+
 	}, []);
   	//Login
 	const handleLogin = () => {
@@ -36,6 +56,7 @@ function App() {
 		const payload = JSON.parse(atob(token.split('.')[1]));
 		setUtente(payload);
 	};
+
 	//Eliminazione libro, definita qui ma usata nel book.jsx
 	const deleteBook = async (code) => {
 		const codeNum = parseInt(code);
