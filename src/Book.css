@@ -1,11 +1,17 @@
 .card {
   width: 100%;
+  height: 100%;
 
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: none;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #eef4ed;
 }
 
 .card:hover {
@@ -21,10 +27,10 @@
 
 .card-body {
   padding: 1.2rem;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex-grow: 1;
 }
 
 .card-title {
@@ -33,6 +39,7 @@
   color: #1a1a2e;
   margin: 0;
 }
+
 .card-subtitle {
   color: #13315c;
   margin: 0;
@@ -41,25 +48,19 @@
 .card-text {
   font-size: 0.875rem;
   color: #13315c;
-
   text-align: justify;
-
-  flex-grow: 1;
-
   margin: 0;
 }
 
-.btn-primary {
-  background-color: #4f46e5;
+.btn-del, .btn-edit {
+  background-color: #2d2d3a;
   border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-  align-self: flex-start;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
-.btn-primary:hover {
-  background-color: #3730a3;
+.btn-del {
+  margin-top: auto; 
 }
