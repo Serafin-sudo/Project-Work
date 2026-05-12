@@ -8,61 +8,86 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  console.log("APP()");
+	console.log("APP()");
 
-  const [showLogin, setShowLogin] = useState(false);
-  const [utente, setUtente] = useState(null);
-  const [books, setBooks] = useState([]);
+	const [showLogin, setShowLogin] = useState(false);
+	const [utente, setUtente] = useState(null);
+	const [books, setBooks] = useState([]);
 
   
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      setUtente(payload);
-    }
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+		const payload = JSON.parse(atob(token.split('.')[1]));
+		setUtente(payload);
+		}
 
-    fetch('http://localhost:3001/Library')
-        .then(res => res.json())
-        .then(data => {
-            console.log("Libri ricevuti:", data);
-            setBooks(Array.isArray(data) ? data : []);
-        })
-        .catch(err => console.log("Errore fetch:", err));
-  }, []);
+		fetch('http://localhost:3001/Library')
+			.then(res => res.json())
+			.then(data => {
+				console.log("Libri ricevuti:", data);
+				setBooks(Array.isArray(data) ? data : []);
+			})
+			.catch(err => console.log("Errore fetch:", err));
+	}, []);
+  	//Login
+	const handleLogin = () => {
+		const token = localStorage.getItem('token');
+		const payload = JSON.parse(atob(token.split('.')[1]));
+		setUtente(payload);
+	};
+	//Eliminazione libro, definita qui ma usata nel book.jsx
+	const deleteBook = async (code) => {
+		const codeNum = parseInt(code);
 
-  const handleLogin = () => {
-    const token = localStorage.getItem('token');
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    setUtente(payload);
-  };
+		if (isNaN(codeNum)) {
+			alert("Codice libro non valido");
+			return;
+		}
 
-  return (
-  <div className='pagina'>
+		try {
+			const response = await fetch(`http://localhost:3001/Library/${codeNum}`, {
+				method: 'DELETE',
+			});
 
-    <header className='header'>
-      <h1>Libreria Moby Dick</h1>
-      <button className='account-btn' onClick={() => setShowLogin(true)}>{utente ? utente.name : "Accedi"}</button>
-    </header>
+			if (response.ok) {
+				setBooks(prevBooks => prevBooks.filter(book => book.code !== codeNum));
+			} else {
+				const errorData = await response.json();
+				alert("Errore: " + (errorData.error));
+			}
+		} catch (err) {
+			console.error("Errore", err);
+			alert("Errore", err)
+		}
+	};
 
-    <main className='main'>
-      <div className='menuLaterale'>
-        <Filtri onFilter={setBooks} />
-        {utente && utente.admin == 1 && <AddBook />}
-      </div>
-      <div className='booksGridMain'>
-        <BooksGrid books={books} />
-      </div>
-    </main>
+	return (
+	<div className='pagina'>
 
-    <footer className='footer'>
-      <h3>Serafini & Minta</h3>
-    </footer>
-    
-    {showLogin && <Login onClose={() => setShowLogin(false)} onLogin={handleLogin} />}
+		<header className='header'>
+		<h1>Libreria Moby Dick</h1>
+		<button className='account-btn' onClick={() => setShowLogin(true)}>{utente ? utente.name : "Accedi"}</button>
+		</header>
 
-  </div>
-  )
+		<main className='main'>
+		<div className='menuLaterale'>
+			<Filtri onFilter={setBooks} />
+			{utente && utente.admin == 1 && <AddBook />}
+		</div>
+		<div className='booksGridMain'>
+			<BooksGrid books={books} utente={utente} onDelete={deleteBook} />
+		</div>
+		</main>
+
+		<footer className='footer'>
+		<h3>Serafini & Minta</h3>
+		</footer>
+		
+		{showLogin && <Login onClose={() => setShowLogin(false)} onLogin={handleLogin} />}
+
+	</div>
+	)
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import "../src/Book.css"
 import immagineTest from './immagine_test.jpg'
 
-function Book ({ book_data }) {
+function Book ({ book_data, utente, onDelete }) {
 
     console.log("Book() ")
 
@@ -12,7 +12,8 @@ function Book ({ book_data }) {
             <p className="card-subtitle">{book_data.author}</p>
             <h5 className="card-title">{book_data.title}</h5>
             <p className="card-text">{book_data.description}</p>
-            <button className="btn-primary">Button</button>
+            {utente && utente.admin == 1 && <button className="btn-del" onClick={() => onDelete(book_data.code)}>🗑️</button>}
+            {utente && utente.admin == 1 && <button className="btn-edit">📝</button>}
         </div>
     </div>
     )
