@@ -1,5 +1,6 @@
 .card {
   width: 100%;
+
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
@@ -30,14 +31,22 @@
   font-size: 1.1rem;
   font-weight: 700;
   color: #1a1a2e;
-  margin-bottom: 0;
+  margin: 0;
+}
+.card-subtitle {
+  color: #13315c;
+  margin: 0;
 }
 
 .card-text {
   font-size: 0.875rem;
-  color: #555;
-  line-height: 1.5;
+  color: #13315c;
+
+  text-align: justify;
+
   flex-grow: 1;
+
+  margin: 0;
 }
 
 .btn-primary {

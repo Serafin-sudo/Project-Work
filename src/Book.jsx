@@ -1,6 +1,4 @@
 import "../src/Book.css"
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card'
 import immagineTest from './immagine_test.jpg'
 
 function Book ({ book_data }) {
@@ -8,17 +6,15 @@ function Book ({ book_data }) {
     console.log("Book() ")
 
     return (
-    <Card>
-        <Card.Img variant="top" src={immagineTest} />
-        <Card.Body>
-            <Card.Title>{book_data.title}</Card.Title>
-            <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-    </Card>
+    <div className="card">
+    <img className="card-img-top" src={immagineTest} alt={book_data.title} />
+        <div className="card-body">
+            <p className="card-subtitle">{book_data.author}</p>
+            <h5 className="card-title">{book_data.title}</h5>
+            <p className="card-text">{book_data.description}</p>
+            <button className="btn-primary">Button</button>
+        </div>
+    </div>
     )
 }
 
