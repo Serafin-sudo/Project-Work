@@ -7,7 +7,15 @@ function Book ({ book_data, utente, onDelete }) {
 
     return (
     <div className="card">
-    <img className="card-img-top" src={immagineTest} alt={book_data.title} />
+        <img
+            className="card-img-top"
+            src={`https://covers.openlibrary.org/b/isbn/${book_data.isbn}-L.jpg`}
+            alt={book_data.title}
+            onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = immagineTest;
+                }}
+        />
         <div className="card-body">
             <p className="card-subtitle">{book_data.author}</p>
             <h5 className="card-title">{book_data.title}</h5>
