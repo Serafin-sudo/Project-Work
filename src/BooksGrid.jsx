@@ -1,7 +1,7 @@
 import Book from './book.jsx'
 import "../src/booksGrid.css"
 
-function BooksGrid({ books, utente, onDelete }) {
+function BooksGrid({ books, utente, onDelete, onEdit }) {
 
     console.log("BooksGrid()");
 
@@ -9,7 +9,7 @@ function BooksGrid({ books, utente, onDelete }) {
         <div className="booksGrid">
             {
             books.map((book) => (
-                <Book key={book._id} book_data={book} utente={utente} onDelete={onDelete} />
+                <Book key={book._id} book_data={book} utente={utente} onDelete={onDelete} onEdit={onEdit}/>
             ))
             }
         </div>

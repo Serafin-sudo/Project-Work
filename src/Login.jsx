@@ -45,7 +45,7 @@ function Login({ onClose, onLogin }) {
             setLoading(false);
         }
     };
-    //Funzioneregistrazione
+    //Funzione registrazione
     const registrati = async () => {
 
         console.log("REGISTRATI()")

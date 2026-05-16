@@ -15,7 +15,7 @@ function App() {
 	const [utente, setUtente] = useState(null);
 	const [books, setBooks] = useState([]);
 
-  
+	
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 
@@ -24,8 +24,7 @@ function App() {
 			setUtente(payload);
 		}
 
-		async function fetchLibrary()
-		{
+		async function fetchLibrary() {
 			try{
 				const res = await axios.get('http://localhost:3001/Library')
 				console.log(res.data);
@@ -56,7 +55,6 @@ function App() {
 		const payload = JSON.parse(atob(token.split('.')[1]));
 		setUtente(payload);
 	};
-
 	//Eliminazione libro, definita qui ma usata nel book.jsx
 	const deleteBook = async (code) => {
 		const codeNum = parseInt(code);
@@ -82,6 +80,28 @@ function App() {
 			alert("Errore", err)
 		}
 	};
+	//Modifica Libro
+	const editBook = async (code, newBookData, onClose) => {
+		//Usiamo solo le modifiche inserite
+		const updates = {};
+		if (newBookData.code) {updates.code = newBookData.code}
+		if (newBookData.title) {updates.title = newBookData.title}
+		if (newBookData.author) {updates.author = newBookData.author}
+		if (newBookData.year) {updates.year = newBookData.year}
+		if (newBookData.isbn) {updates.isbn = newBookData.isbn}
+		if (newBookData.description) {updates.description = newBookData.description}
+		try {
+			await axios.put(`http://localhost:3001/Library/${code}`, updates);
+			// Nuova get
+			const res = await axios.get('http://localhost:3001/Library');
+			setBooks(res.data);
+			// Chiudi popup inserimento libri
+			onClose();
+		} catch (err) {
+			console.error("Errore modifica:", err);
+			alert("Errore: " + (err.response?.data?.error || err.message));
+		}
+    }
 
 	return (
 	<div className='pagina'>
@@ -97,7 +117,7 @@ function App() {
 			{utente && utente.admin == 1 && <AddBook />}
 		</div>
 		<div className='booksGridMain'>
-			<BooksGrid books={books} utente={utente} onDelete={deleteBook} />
+			<BooksGrid books={books} utente={utente} onDelete={deleteBook} onEdit={editBook} />
 		</div>
 		</main>
 

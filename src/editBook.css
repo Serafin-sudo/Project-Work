@@ -1,0 +1,58 @@
+.book_edit_overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+
+    background-color: rgba(11, 37, 69, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book_edit_box {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #134074;
+
+    padding: 2rem;
+    gap: 1rem;
+    border-radius: 12px;
+    width: 360px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    position: relative;
+}
+
+.book_edit_x {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    background-color: firebrick;
+    color: #eef4ed;
+
+    border-radius: 5px;
+    border: none;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}
+
+.book_edit_error {
+    color: salmon;
+    margin: 0;
+}
+
+.book_edit_box textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.4rem;
+    border-radius: 5px;
+    border: none;
+}
