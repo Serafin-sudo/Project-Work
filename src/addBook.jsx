@@ -1,77 +1,58 @@
 import { useState } from "react";
-import axios from "axios";
 
-function AddBook() {
+function AddBook({ onAdd }) {
 
     const [form, setForm] = useState({
+        code: "",
         title: "",
         author: "",
         year: "",
         genre: "",
-        availableCopies: "",
-        totalCopies: "",
-        code: "",
-        isbn: ""
+        isbn: "",
+        description: ""
     });
 
     const [message, setMessage] = useState("");
 
-    function handleChange(e) {
-        setForm({
-        ...form,
-        [e.target.name]: e.target.value
-        });
-    }
+    function handleChange(e) {setForm({ ...form, [e.target.name]: e.target.value });}
 
     async function handleSubmit(e) {
-        
         e.preventDefault();
-
-        try {
-            console.log(form.title)
-            const response = await axios.post(
-                "http://localhost:3001/Library",
-                {
-                ...form,
-                year: Number(form.year),
-                availableCopies: Number(form.availableCopies),
-                totalCopies: Number(form.totalCopies),
-                code: Number(form.code),
-                isbn: Number(form.isbn)
-                }
-            );
-
-            setMessage(response.data.message);
-            console.log(response.data);
-
-            setForm({
-                title: "",
-                author: "",
-                year: "",
-                genre: "",
-                availableCopies: "",
-                totalCopies: "",
-                code: "",
-                isbn: ""
-            });
-
-        } catch (err) {
-            console.error(err);
+        //Controllo campi
+        if (!form.code || !form.title || !form.author || !form.isbn) {
+            alert("Codice, titolo, autore e isbn sono obbligatori");
+            setMessage("Codice, titolo, autore e isbn sono obbligatori");
+            return;
         }
+        //Controllo code
+        if (isNaN(Number(form.code))) {
+            alert("Code invalido");
+            setMessage("Code invalido");
+            return;
+        }
+        //Aggiunta
+        await onAdd(form, () => {setForm({ title: "", author: "", year: "", genre: "", code: "", isbn: "", description: "" });});
+        setMessage("Libro salvato");
     }
 
     return (
     <section>
     <h2>Add Book (solo admin hehehe)</h2>
     <form onSubmit={handleSubmit}>
-        <input name="title" placeholder="title" value={form.title} onChange={handleChange} />
-        <input name="author" placeholder="author" value={form.author} onChange={handleChange} />
-        <input name="year" placeholder="year" value={form.year} onChange={handleChange} />
-        <input name="genre" placeholder="genre" value={form.genre} onChange={handleChange} />
-        <input name="availableCopies" placeholder="availableCopies" value={form.availableCopies} onChange={handleChange} />
-        <input name="totalCopies" placeholder="totalCopies" value={form.totalCopies} onChange={handleChange} />
+        <label>Codice</label>
         <input name="code" placeholder="Code (unique)" value={form.code} onChange={handleChange} />
+        <label>Titolo</label>
+        <input name="title" placeholder="title" value={form.title} onChange={handleChange} />
+        <label>Autore</label>
+        <input name="author" placeholder="author" value={form.author} onChange={handleChange} />
+        <label>Anno</label>
+        <input name="year" placeholder="year" value={form.year} onChange={handleChange} />
+        <label>Genere</label>
+        <input name="genre" placeholder="genre" value={form.genre} onChange={handleChange} />
+        <label>Isbn</label>
         <input name="isbn" placeholder="ISBN" value={form.isbn} onChange={handleChange} />
+        <label>Descrizione</label>
+        <textarea name="description" placeholder="Un omicidio su un aereo..." value={form.description} onChange={handleChange} rows={4} />
 
         <button type="submit">Add Book</button>
     </form>

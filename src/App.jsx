@@ -55,8 +55,33 @@ function App() {
 		const payload = JSON.parse(atob(token.split('.')[1]));
 		setUtente(payload);
 	};
+	// Aggiungi Libro
+	const addBook = async (newBookData, onClose) => {
+
+		console.log("addBook()")
+
+		try {
+			await axios.post('http://localhost:3001/Library', {
+				...newBookData,
+				year: Number(newBookData.year),
+				code: Number(newBookData.code),
+				isbn: Number(newBookData.isbn),
+				availableCopies: 0,
+				totalCopies: 0,
+			});
+			const res = await axios.get('http://localhost:3001/Library');
+			setBooks(res.data);
+			onClose();
+		} catch (err) {
+			console.error("Errore aggiunta:", err);
+			alert("Errore: " + (err.response?.data?.error || err.message));
+		}
+	}
 	//Eliminazione libro, definita qui ma usata nel book.jsx
 	const deleteBook = async (code) => {
+
+		console.log("delBook()")
+
 		const codeNum = parseInt(code);
 
 		if (isNaN(codeNum)) {
@@ -82,6 +107,9 @@ function App() {
 	};
 	//Modifica Libro
 	const editBook = async (code, newBookData, onClose) => {
+
+		console.log("editBook()")
+
 		//Usiamo solo le modifiche inserite
 		const updates = {};
 		if (newBookData.code) {updates.code = newBookData.code}
@@ -114,7 +142,7 @@ function App() {
 		<main className='main'>
 		<div className='menuLaterale'>
 			<Filtri onFilter={setBooks} />
-			{utente && utente.admin == 1 && <AddBook />}
+			{utente && utente.admin == 1 && <AddBook onAdd={addBook} />}
 		</div>
 		<div className='booksGridMain'>
 			<BooksGrid books={books} utente={utente} onDelete={deleteBook} onEdit={editBook} />
