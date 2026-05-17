@@ -1,4 +1,5 @@
 import './Login.css'
+import './App.css'
 import { useState } from 'react';
 
 function Login({ onClose, onLogin }) {
@@ -80,11 +81,11 @@ function Login({ onClose, onLogin }) {
 
 
     return (
-    <div className='login_overlay' onClick={onClose}>
+    <div className='overlay' onClick={onClose}>
         
-        <div className='login_box' onClick={e => e.stopPropagation()}>
+        <div className='overlay_box' onClick={e => e.stopPropagation()}>
             
-            <button className='login_x' onClick={onClose}>✕</button>
+            <button className='overlay_x' onClick={onClose}>✕</button>
 
             <h2>{registering ? 'Registrati' : 'Accedi'}</h2>
 

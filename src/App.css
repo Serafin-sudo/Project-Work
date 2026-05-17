@@ -8,7 +8,7 @@ Colors:
 */
 
 .pagina {
-  display: flex;
+    display: flex;
     flex-direction: column;
 
     align-items: center;
@@ -18,55 +18,106 @@ Colors:
 }
 /*HEADER*/
 .header {
-  width: 100%;
+    width: 100%;
 
-  background-color: #134074;
-  color: #8da9c4;
+    background-color: #134074;
+    color: #8da9c4;
 
-  text-align: center;
-  position: relative;
+    text-align: center;
+    position: relative;
 }
 .account-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 
-  padding: 0.6rem 1.4rem;
+    padding: 0.6rem 1.4rem;
 
-  font-size: 1rem;
+    font-size: 1rem;
 
-  background-color: #13315c;
-  color: #eef4ed;
+    background-color: #13315c;
+    color: #eef4ed;
 
-  border: none;
-  border-radius: 6px;
+    border: none;
+    border-radius: 6px;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 .account-btn:hover {
-  background-color: #8da9c4;
-  color: #13315c;
+    background-color: #8da9c4;
+    color: #13315c;
 }
 /*MAIN*/
-.main {
-  width: 100%;
-  flex: 1;
-  
-  display: flex;
-  flex-direction: row;
+    .main {
+    width: 100%;
+    flex: 1;
+    
+    display: flex;
+    flex-direction: row;
 
-  background-color: #8da9c4;
+    background-color: #8da9c4;
 }
 .menuLaterale{
-  flex: 1;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
 }
 .booksGridMain{
-  flex: 4;
+    flex: 4;
 }
 /*FOOTER*/
 .footer {
-  width: 100%;
-  background-color: #13315c;
-  color: #eef4ed;
-  text-align: center;
+    width: 100%;
+    background-color: #13315c;
+    color: #eef4ed;
+    text-align: center;
+}
+/*OVERLAY (login, bookEdit, bookInfo)*/
+.overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+
+    background-color: rgba(11, 37, 69, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.overlay_box {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #134074;
+    color: #eef4ed;
+
+    padding: 2rem;
+    gap: 1rem;
+    border-radius: 12px;
+    width: 360px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    position: relative;
+}
+.overlay_x {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    background-color: firebrick;
+    color: #eef4ed;
+
+    border-radius: 5px;
+    border: none;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}
+/*MOBILE*/
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
 }

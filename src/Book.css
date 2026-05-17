@@ -52,7 +52,7 @@
   margin: 0;
 }
 
-.btn-del, .btn-edit {
+.btn-del, .btn-edit, .btn-info {
   background-color: #2d2d3a;
   border: none;
   border-radius: 4px;

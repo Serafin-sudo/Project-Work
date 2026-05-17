@@ -3,13 +3,13 @@ import './Filtri.css'
 import Filtri from './Filtri'
 import BooksGrid from './booksGrid'
 import AddBook from './addBook'
-import Login from "./login"
+import Login from './login'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 function App() {
 
-	console.log("APP()");
+	console.log('APP()');
 
 	const [showLogin, setShowLogin] = useState(false);
 	const [utente, setUtente] = useState(null);
@@ -32,7 +32,7 @@ function App() {
 				setBooks(res.data);
 
 			}catch(err){
-				console.log("Errore:", err.response?.data || err.message);
+				console.log('Errore:', err.response?.data || err.message);
 		
 			}
 			
@@ -43,10 +43,10 @@ function App() {
 		// fetch('http://localhost:3001/Library')
 		// 	.then(res => res.json())
 		// 	.then(data => {
-		// 		console.log("Libri ricevuti:", data);
+		// 		console.log('Libri ricevuti:', data);
 		// 		setBooks(Array.isArray(data) ? data : []);
 		// 	})
-		// 	.catch(err => console.log("Errore fetch:", err));
+		// 	.catch(err => console.log('Errore fetch:', err));
 
 	}, []);
   	//Login
@@ -58,7 +58,7 @@ function App() {
 	// Aggiungi Libro
 	const addBook = async (newBookData, onClose) => {
 
-		console.log("addBook()")
+		console.log('addBook()')
 
 		try {
 			await axios.post('http://localhost:3001/Library', {
@@ -73,19 +73,19 @@ function App() {
 			setBooks(res.data);
 			onClose();
 		} catch (err) {
-			console.error("Errore aggiunta:", err);
-			alert("Errore: " + (err.response?.data?.error || err.message));
+			console.error('Errore aggiunta:', err);
+			alert('Errore: ' + (err.response?.data?.error || err.message));
 		}
 	}
-	//Eliminazione libro, definita qui ma usata nel book.jsx
+	//Elimina libro
 	const deleteBook = async (code) => {
 
-		console.log("delBook()")
+		console.log('delBook()')
 
 		const codeNum = parseInt(code);
 
 		if (isNaN(codeNum)) {
-			alert("Codice libro non valido");
+			alert('Codice libro non valido');
 			return;
 		}
 
@@ -98,17 +98,17 @@ function App() {
 				setBooks(prevBooks => prevBooks.filter(book => book.code !== codeNum));
 			} else {
 				const errorData = await response.json();
-				alert("Errore: " + (errorData.error));
+				alert('Errore: ' + (errorData.error));
 			}
 		} catch (err) {
-			console.error("Errore", err);
-			alert("Errore", err)
+			console.error('Errore', err);
+			alert('Errore', err)
 		}
 	};
-	//Modifica Libro
+	//Modifica libro
 	const editBook = async (code, newBookData, onClose) => {
 
-		console.log("editBook()")
+		console.log('editBook()')
 
 		//Usiamo solo le modifiche inserite
 		const updates = {};
@@ -126,8 +126,8 @@ function App() {
 			// Chiudi popup inserimento libri
 			onClose();
 		} catch (err) {
-			console.error("Errore modifica:", err);
-			alert("Errore: " + (err.response?.data?.error || err.message));
+			console.error('Errore modifica:', err);
+			alert('Errore: ' + (err.response?.data?.error || err.message));
 		}
     }
 
@@ -136,7 +136,7 @@ function App() {
 
 		<header className='header'>
 		<h1>Libreria Moby Dick</h1>
-		<button className='account-btn' onClick={() => setShowLogin(true)}>{utente ? utente.name : "Accedi"}</button>
+		<button className='account-btn' onClick={() => setShowLogin(true)}>{utente ? utente.name : 'Accedi'}</button>
 		</header>
 
 		<main className='main'>

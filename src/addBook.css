@@ -1,0 +1,9 @@
+.addBookForm {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+}
+.addBookForm label {
+    color: #13315c;
+}
