@@ -40,7 +40,7 @@ function Book ({ book_data, utente, onDelete, onEdit }) {
 
                     <button className='overlay_x' onClick={() => setShowBookInfo(false)}>✕</button>
 
-                    <h4>{book_data.author}</h4>
+                    <h4>{book_data.author}, {book_data.year}</h4>
                     <h3>{book_data.title}</h3>
                     <p>{book_data.description}</p>
                     <h5>code: {book_data.code} | isbn: {book_data.isbn}</h5>

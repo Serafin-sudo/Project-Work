@@ -1,8 +1,18 @@
+.addBook {
+text-align: center;
+}
+.addBook h2 {
+    font-weight: 700;
+    color: #13315c;
+}
 .addBookForm {
     display: flex;
     flex-direction: column;
-    
-    width: 100%;
+
+    gap: 0.8rem;
+    padding: 1rem;
+
+    color: #13315c;
 }
 .addBookForm label {
     color: #13315c;

@@ -38,8 +38,9 @@ function AddBook({ onAdd }) {
     }
 
     return (
-    <section>
-        <h2>Add Book (solo admin hehehe)</h2>
+    <section className='addBook'>
+        <h2>Aggiungi Libro</h2>
+
         <form onSubmit={handleSubmit} className='addBookForm'>
 
             <label>Codice</label>

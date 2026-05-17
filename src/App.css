@@ -115,8 +115,33 @@ Colors:
 
     cursor: pointer;
 }
+/*INPUT BOXES*/
+input,
+textarea {
+    background-color: #eef4ed;
+    color: #0b2545;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    resize: vertical;
+}
+input::placeholder,
+textarea::placeholder {
+    color: #8da9c4;
+}
+input:hover,
+textarea:hover {
+    border-color: #8da9c4;
+}
+input:focus,
+textarea:focus {
+    border-color: #134074;
+    box-shadow: 0 0 0 3px rgba(141, 169, 196, 0.25);
+}
 /*MOBILE*/
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .main {
         flex-direction: column;
     }
