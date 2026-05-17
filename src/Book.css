@@ -53,14 +53,17 @@
 }
 
 .btn-del, .btn-edit, .btn-info {
-  background-color: #2d2d3a;
+  background-color: #0b2545;
   border: none;
   border-radius: 4px;
   padding: 5px;
   cursor: pointer;
   margin-top: 5px;
 }
-
+.btn-del:hover, .btn-edit:hover, .btn-info:hover {
+  background-color: #134074;
+}
+/*server per far stare tutti e 3 i bottoni allo stesso livello tra le varie card*/
 .btn-del {
   margin-top: auto; 
 }

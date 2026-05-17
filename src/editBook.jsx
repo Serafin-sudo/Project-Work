@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import './editBook.css'
+import './App.css'
 
 function EditBook({ onClose, onEdit }) {
 
@@ -21,13 +22,11 @@ function EditBook({ onClose, onEdit }) {
     };
 
     return (
-    <div className='book_edit_overlay' onClick={onClose}>
-
-
+    <div className='overlay' onClick={onClose}>
         
-        <div className='book_edit_box' onClick={e => e.stopPropagation()}>
+        <div className='overlay_box' onClick={e => e.stopPropagation()}>
             
-            <button className='book_edit_x' onClick={onClose}>✕</button>
+            <button className='overlay_x' onClick={onClose}>✕</button>
 
             <h2>Modifica libro</h2>
             
