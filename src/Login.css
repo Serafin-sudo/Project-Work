@@ -1,6 +1,8 @@
-.bottoniAccediRegistrati{
+.bottoniAccediRegistrati {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 .login_box form {
     display: flex;

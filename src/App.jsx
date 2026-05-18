@@ -17,6 +17,7 @@ function App() {
 
 	
 	useEffect(() => {
+		
 		const token = localStorage.getItem('token');
 
 		if (token) {
@@ -49,12 +50,17 @@ function App() {
 		// 	.catch(err => console.log('Errore fetch:', err));
 
 	}, []);
-  	//Login
+  	//LogIn
 	const handleLogin = () => {
 		const token = localStorage.getItem('token');
 		const payload = JSON.parse(atob(token.split('.')[1]));
 		setUtente(payload);
 	};
+	//LogOut
+	const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUtente(null);
+};
 	// Aggiungi Libro
 	const addBook = async (newBookData, onClose) => {
 
@@ -150,10 +156,14 @@ function App() {
 		</main>
 
 		<footer className='footer'>
-		<h3>Serafini & Minta</h3>
+		<h3>
+			<a href="https://github.com/Serafin-sudo" target="_blank" rel="noreferrer">Serafini</a>
+			{' & '}
+			<a href="https://github.com/MintaDuku" target="_blank" rel="noreferrer">Minta</a>
+		</h3>
 		</footer>
 		
-		{showLogin && <Login onClose={() => setShowLogin(false)} onLogin={handleLogin} />}
+		{showLogin && <Login onClose={() => setShowLogin(false)} onLogin={handleLogin} onLogout={handleLogout} />}
 
 	</div>
 	)

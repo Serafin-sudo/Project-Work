@@ -2,7 +2,7 @@ import './Login.css'
 import './App.css'
 import { useState } from 'react';
 
-function Login({ onClose, onLogin }) {
+function Login({ onClose, onLogin, onLogout }) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -111,6 +111,7 @@ function Login({ onClose, onLogin }) {
                 <button onClick={() => setregistering(!registering)}>
                     {registering ? 'Accedi invece' : 'Registrati invece'}
                 </button>
+                {localStorage.getItem('token') && (<button onClick={() => { onLogout(); onClose(); }}>Logout</button>)}
             </div>
         </div>
     </div>
